@@ -1,1 +1,71 @@
+## NORMALIZATION ASSIGNMENT 2
 
+Table Structure:
+ROLLNO, NAME, AGE, EXAM, MARKS, GRADE
+
+Functional Dependencies:
+ROLLNO -> NAME, AGE
+(ROLLNO, EXAM) -> MARKS
+MARKS -> GRADE
+
+Analysis:
+The composite key is (ROLLNO, EXAM).
+
+NAME and AGE depend on ROLLNO.
+MARKS depends on the composite key.
+GRADE depends on MARKS.
+
+There exists a transitive dependency:
+(ROLLNO, EXAM) -> MARKS -> GRADE
+
+Therefore, the table is in 2NF but not in 3NF.
+
+Current Normal Form:
+2NF
+
+Conversion to 3NF:
+
+## STUDENT Table
+
+ROLLNO (PK)
+NAME
+AGE
+
+## RESULT Table
+
+ROLLNO
+EXAM
+MARKS
+
+Primary Key:
+(ROLLNO, EXAM)
+
+## GRADE_MASTER Table
+
+MARKS (PK)
+GRADE
+
+SQL Implementation:
+
+CREATE TABLE STUDENT (
+ROLLNO NUMBER PRIMARY KEY,
+NAME VARCHAR2(50),
+AGE NUMBER
+);
+
+CREATE TABLE RESULT (
+ROLLNO NUMBER,
+EXAM VARCHAR2(30),
+MARKS NUMBER,
+PRIMARY KEY (ROLLNO, EXAM),
+FOREIGN KEY (ROLLNO)
+REFERENCES STUDENT(ROLLNO)
+);
+
+CREATE TABLE GRADE_MASTER (
+MARKS NUMBER PRIMARY KEY,
+GRADE VARCHAR2(5)
+);
+
+Result:
+The transitive dependency is removed and the schema is converted to 3NF.
