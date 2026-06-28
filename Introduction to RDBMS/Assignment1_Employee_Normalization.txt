@@ -1,1 +1,63 @@
+## NORMALIZATION ASSIGNMENT 1
 
+Table Structure:
+EMPNO, ENAME, SAL, DEPTNO, DNAME, LOC
+
+Functional Dependencies:
+EMPNO -> ENAME, SAL, DEPTNO
+DEPTNO -> DNAME, LOC
+
+Analysis:
+The primary key is EMPNO. Since it is a single attribute key, there are no partial dependencies.
+
+However, there is a transitive dependency:
+EMPNO -> DEPTNO -> DNAME, LOC
+
+Therefore, the table is in 2NF but not in 3NF.
+
+Current Normal Form:
+2NF
+
+Conversion to 3NF:
+
+## EMPLOYEE Table
+
+EMPNO (PK)
+ENAME
+SAL
+DEPTNO
+
+## DEPARTMENT Table
+
+DEPTNO (PK)
+DNAME
+LOC
+
+## SQL Implementation:
+
+CREATE TABLE DEPARTMENT (
+DEPTNO NUMBER PRIMARY KEY,
+DNAME VARCHAR2(30),
+LOC VARCHAR2(30)
+);
+
+CREATE TABLE EMPLOYEE (
+EMPNO NUMBER PRIMARY KEY,
+ENAME VARCHAR2(30),
+SAL NUMBER,
+DEPTNO NUMBER,
+FOREIGN KEY (DEPTNO)
+REFERENCES DEPARTMENT(DEPTNO)
+);
+
+Result:
+The transitive dependency is removed ,tables are created and the schema is converted to 3NF.
+
+## Output:
+
+Table created.
+
+Table created.
+
+Result:
+The transitive dependency is removed, tables are created and the schema is converted to 3NF.
