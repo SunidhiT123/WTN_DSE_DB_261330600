@@ -1,1 +1,67 @@
+## NORMALIZATION ASSIGNMENT 3
 
+Table Structure:
+EMPNO, PROJECT_NO, NO_OF_DAYS, CUSTOMERNAME
+
+Composite Primary Key:
+(EMPNO, PROJECT_NO)
+
+Functional Dependencies:
+(EMPNO, PROJECT_NO) -> NO_OF_DAYS
+PROJECT_NO -> CUSTOMERNAME
+
+Analysis:
+The primary key is a composite key consisting of EMPNO and PROJECT_NO.
+
+CUSTOMERNAME depends only on PROJECT_NO, which is part of the composite primary key.
+
+This creates a partial dependency.
+
+Therefore, the table is in 1NF but not in 2NF.
+
+Current Normal Form:
+1NF
+
+Conversion to 2NF:
+
+## EMPLOYEE_PROJECT Table
+
+EMPNO
+PROJECT_NO
+NO_OF_DAYS
+
+Primary Key:
+(EMPNO, PROJECT_NO)
+
+## PROJECT Table
+
+PROJECT_NO (PK)
+CUSTOMERNAME
+
+## SQL Implementation:
+
+CREATE TABLE PROJECT (
+PROJECT_NO NUMBER PRIMARY KEY,
+CUSTOMERNAME VARCHAR2(50)
+);
+
+CREATE TABLE EMPLOYEE_PROJECT (
+EMPNO NUMBER,
+PROJECT_NO NUMBER,
+NO_OF_DAYS NUMBER,
+PRIMARY KEY (EMPNO, PROJECT_NO),
+FOREIGN KEY (PROJECT_NO)
+REFERENCES PROJECT(PROJECT_NO)
+);
+
+Result:
+The partial dependency is removed and the schema is converted to 2NF.
+
+## Output:
+
+Table created.
+
+Table created.
+
+Result:
+The partial dependency is removed and the schema is converted to 2NF.
