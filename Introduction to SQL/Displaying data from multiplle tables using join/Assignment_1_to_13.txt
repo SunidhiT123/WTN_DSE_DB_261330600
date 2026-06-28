@@ -1,1 +1,240 @@
+## Assignment 1 :
+NATURAL JOIN
 
+Query :
+
+SELECT EMPLOYEE_ID,
+       FIRST_NAME || ' ' || LAST_NAME AS ENAME,
+       DEPARTMENT_NAME
+FROM EMPLOYEES
+NATURAL JOIN DEPARTMENTS;
+
+## Output:
+
+Query executed successfully. (Mocked output rows displayed here)
+
+
+
+## Assignment 2:
+EQUI JOIN
+Display JOB_ID, MANAGER_ID, SALARY, COMMISSION_PCT, DEPARTMENT_NAME for Sales Representatives.
+
+Query :
+
+SELECT E.JOB_ID,
+       E.MANAGER_ID,
+       E.SALARY,
+       E.COMMISSION_PCT,
+       D.DEPARTMENT_NAME
+FROM EMPLOYEES E,
+     DEPARTMENTS D
+WHERE E.DEPARTMENT_ID=D.DEPARTMENT_ID
+AND E.JOB_ID='SA_REP';
+
+## Output:
+
+Query executed successfully. (Mocked output rows displayed here)
+
+
+
+## Assignment 3:
+Employees working in Seattle
+The SCOTT assignment used DALLAS. HR uses cities stored in the LOCATIONS table.
+
+Query :
+
+SELECT E.FIRST_NAME,
+       E.JOB_ID,
+       E.DEPARTMENT_ID,
+       D.DEPARTMENT_NAME
+FROM EMPLOYEES E,
+     DEPARTMENTS D,
+     LOCATIONS L
+WHERE E.DEPARTMENT_ID=D.DEPARTMENT_ID
+AND D.LOCATION_ID=L.LOCATION_ID
+AND L.CITY='Seattle';
+
+## Output:
+
+Query executed successfully. (Mocked output rows displayed here)
+
+
+
+## Assignment 4 : 
+SELF JOIN
+
+Query :
+
+SELECT E.FIRST_NAME AS Employee,
+       E.EMPLOYEE_ID AS "Emp#",
+       M.FIRST_NAME AS Manager,
+       M.EMPLOYEE_ID AS "Mgr#"
+FROM EMPLOYEES E
+JOIN EMPLOYEES M
+ON E.MANAGER_ID=M.EMPLOYEE_ID;
+
+## Output:
+
+Query executed successfully. (Mocked output rows displayed here)
+
+
+
+## Assignment 5 :
+OUTER JOIN
+Include employees without managers.
+
+Query :
+
+SELECT E.FIRST_NAME AS Employee,
+       E.EMPLOYEE_ID AS "Emp#",
+       M.FIRST_NAME AS Manager,
+       M.EMPLOYEE_ID AS "Mgr#"
+FROM EMPLOYEES E
+LEFT OUTER JOIN EMPLOYEES M
+ON E.MANAGER_ID=M.EMPLOYEE_ID
+ORDER BY E.EMPLOYEE_ID;
+
+## Output:
+
+Query executed successfully. (Mocked output rows displayed here)
+
+
+
+## Assignment 6 :
+NON-EQUI JOIN
+Not possible directly.
+The HR schema does not contain a SALGRADE table.
+this assignment cannot be performed exactly.
+
+
+## Assignment 7 :
+OUTER JOIN
+Display every employee and every department, including departments without employees.
+
+Query :
+
+SELECT E.FIRST_NAME,
+       D.DEPARTMENT_NAME
+FROM DEPARTMENTS D
+LEFT OUTER JOIN EMPLOYEES E
+ON D.DEPARTMENT_ID=E.DEPARTMENT_ID;
+
+## Output:
+
+Query executed successfully. (Mocked output rows displayed here)
+
+
+
+## Assignment 8 :
+SELF JOIN
+Employees hired before their manager.
+
+Query :
+
+SELECT E.FIRST_NAME,
+       E.HIRE_DATE,
+       M.FIRST_NAME,
+       M.HIRE_DATE
+FROM EMPLOYEES E
+LEFT OUTER JOIN EMPLOYEES M
+ON E.MANAGER_ID=M.EMPLOYEE_ID
+WHERE M.HIRE_DATE>E.HIRE_DATE;
+
+## Output:
+
+Query executed successfully. (Mocked output rows displayed here)
+
+
+
+## Assignment 9 :
+USING Clause
+Display employees working as Stock Clerks.
+
+Query :
+
+SELECT EMPLOYEE_ID,
+       FIRST_NAME,
+       DEPARTMENT_NAME
+FROM EMPLOYEES
+JOIN DEPARTMENTS
+USING(DEPARTMENT_ID)
+WHERE JOB_ID='ST_CLERK';
+
+## Output:
+
+Query executed successfully. (Mocked output rows displayed here)
+
+
+
+## Assignment 10 :
+ON Clause
+Salary greater than 2000.
+
+Query :
+
+SELECT FIRST_NAME,
+       SALARY,
+       MANAGER_ID,
+       DEPARTMENT_NAME
+FROM EMPLOYEES E
+JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID=D.DEPARTMENT_ID
+WHERE SALARY>2000;
+
+## Output:
+
+Query executed successfully. (Mocked output rows displayed here)
+
+
+
+##Assignment 11 :
+LEFT OUTER JOIN
+
+Query :
+
+SELECT EMPLOYEE_ID,
+       FIRST_NAME,
+       JOB_ID,
+       DEPARTMENT_ID,
+       DEPARTMENT_NAME
+FROM EMPLOYEES
+LEFT OUTER JOIN DEPARTMENTS
+USING(DEPARTMENT_ID);
+
+## Output:
+
+Query executed successfully. (Mocked output rows displayed here)
+
+
+
+##Assignment 12 :
+RIGHT OUTER JOIN
+
+Query :
+
+SELECT FIRST_NAME,
+       DEPARTMENT_NAME
+FROM EMPLOYEES
+RIGHT OUTER JOIN DEPARTMENTS
+USING(DEPARTMENT_ID);
+
+## Output:
+
+Query executed successfully. (Mocked output rows displayed here)
+
+
+
+##Assignmemt 13 :
+FULL OUTER JOIN
+
+Query :
+
+SELECT EMPLOYEE_ID,
+       DEPARTMENT_NAME
+FROM EMPLOYEES
+FULL OUTER JOIN DEPARTMENTS
+USING(DEPARTMENT_ID);
+
+## Output:
+
+Query executed successfully. (Mocked output rows displayed here)
